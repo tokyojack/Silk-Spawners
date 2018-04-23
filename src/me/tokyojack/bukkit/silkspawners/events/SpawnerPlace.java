@@ -21,6 +21,7 @@ public class SpawnerPlace implements Listener {
 
 		if (block == null || block.getType().equals(Material.AIR))
 			return;
+		
 		if (block.getType() != Material.MOB_SPAWNER)
 			return;
 
@@ -33,6 +34,9 @@ public class SpawnerPlace implements Listener {
 			return;
 
 		String itemName = ChatColor.stripColor(item.getItemMeta().getDisplayName());
+		
+		// Gets the string between "[" and "]", the uppercases it
+		// Then get's the EntityType with it
 		EntityType answer = EntityType.valueOf((itemName.substring(itemName.indexOf("[") + 1, itemName.indexOf("]"))).toUpperCase());
 
 		Core.getPlugin().getServer().getScheduler().scheduleSyncDelayedTask(Core.getPlugin(), new Runnable() {

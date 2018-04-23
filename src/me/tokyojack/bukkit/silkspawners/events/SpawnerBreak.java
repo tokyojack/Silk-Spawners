@@ -32,15 +32,18 @@ public class SpawnerBreak implements Listener {
 
 		if (!(item.containsEnchantment(Enchantment.SILK_TOUCH))) {
 			player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-					"You must have a &6Silk Touch pickaxe &fto mine!"));
+					"&fYou must have a &6Silk Touch pickaxe &fto mine!"));
 			event.setCancelled(true);
 			return;
 		}
 		
+		// Casting it as it checks if it's a mob spawner with (block.getType() == Material.MOB_SPAWNER)
 		EntityType mobSpawnerType = ((CreatureSpawner) block.getState()).getSpawnedType();
 
+		// Get's the entity name and removes all the "_", and then capitalizes
 		String spawnerName = WordUtils.capitalizeFully(mobSpawnerType.name().replaceAll("_", " "));
 
+		// Switches the name "PIG_ZOMBIE" name to "Zombie Pigman" as that's how it's most commonly referred as
 		if (mobSpawnerType == EntityType.PIG_ZOMBIE)
 			spawnerName = "Zombie Pigman";
 
